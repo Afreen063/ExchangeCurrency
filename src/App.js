@@ -2,19 +2,20 @@
 import './App.css';
 import useState from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Home from './Components/Home.js'
-import Exchange from './Components/Exchange.js'
+import Home from './Components/Home/Home'
+import Exchange from './Components/Exchange/Exchange'
+
 
 
 function App() {
-        const [userData, setUserData]=useState({});
+        
 
   return (
    <div>
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Home />}></Route>
-      <Route path='/Exchange' element={<Exchange/>}></Route>
+      <Route path='/' element={<Home />}/>
+      <Route path='/Exchange' element={<Exchange />}/>
     </Routes>
     </BrowserRouter>
    </div>
