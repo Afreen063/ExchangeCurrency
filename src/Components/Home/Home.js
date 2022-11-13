@@ -26,33 +26,45 @@ export default function Home()
     {
         setError(true);
         setErrorMsg("Require Your E-Mail");
-        if(!email.match(mailformat)&&email!='')
+    }
+    if((!email.match(mailformat))&&email!=='')
         {
+            setError(true)
             setErrorMsg("Incorrect Email")
         }
-    }
    
-      if(inputerr&&error)
+      if((email.match(mailformat))&&name!="")
       {
         return navigate('/Exchange') 
       }
    }
     return (
-        <div >
+        <div className='bg-blue-100'>
             
-            <h1 className='text-xl text-center '>Currency Exchange</h1>
-<form className='Form'>
-    <label htmlFor="in">First Name</label>
-    <InputText id="in" value={name} onChange={(e) => setName(e.target.value)} required/>
-    {inputerr?<div className='errormsg'>Require your Name</div>:null}
-    <br/>
-    <label htmlFor='email'>E-mail</label>
-    <InputText id='email' value={email} onChange={(e)=>{setEmail(e.target.value)}} required/>
-    
-    {error?<div className='errormsg'>{errorMsg}</div>:null}
-    <br/>
-    <Button type="submit" label="Submit" onClick={handleClick}/>
+            <h1 className='text-xxl text-center '>Currency Exchange</h1>
+            <div className='Card'>
+<form className='flex flex-column card-container green-container'>
+
+   <div className='flex flex-column align-items-center justify-content-center h-10rem bg-blue-500 font-bold text-white border-round m-2 '>
+
+        <label htmlFor="in">First Name</label>
+        <br/>
+        <InputText id="in" value={name} onChange={(e) => {setName(e.target.value); setInputerr(false)}} required/>
+        {inputerr?<div className='errormsg text-pink-300'>Require your Name</div>:null}
+    </div>
+
+    <div className='flex flex-column align-items-center justify-content-center h-10rem bg-blue-500 font-bold text-white border-round m-2'>
+         
+         <label htmlFor='email'>E-mail</label>
+          <InputText id='email' value={email} onChange={(e)=>{setEmail(e.target.value);setError(false)}} required/>
+        {error?<div className='errormsg text-pink-300'>{errorMsg}</div>:null}
+    </div>
+    <div className=' flex align-items-center justify-content-center h-4rem bg-lightblue-500 font-bold text-white border-round m-2'>
+          <Button type="submit" label="Submit" onClick={handleClick}/>
+    </div>
 </form>
+</div>
+ 
  
         </div>
     )
